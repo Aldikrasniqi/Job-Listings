@@ -26,15 +26,15 @@ module.exports = {
   },
   sendResetPasswordLink: async (emailTo, token) => {
     await transporter.sendMail({
-      from: '"Bootcamp 3" <bootcamo3@test.com>',
+      from: '"Job Listings" <JobListingsService@test.com>',
       to: emailTo,
       subject: 'Forgot Password?',
       text:
-        'A request for resetting your password was submitted. Follow the link below to reset your password. If you did not request it, please ignore this email http://localhost:3001/reset-password/' +
+        'A request for resetting your password was submitted. Follow the link below to reset your password. If you did not request it, please ignore this email http://localhost:4002/reset-password/:token' +
         token,
       html: `<div>
           <p>A request for resetting your password was submitted. Follow the link below to reset your password. If you did not request it, please ignore this email</p>
-          <a href="http://localhost:3001/reset-password/${token}">Reset Password</a>
+          <a href="http://localhost:4002/reset-password/${token}">Reset Password</a>
           </div>`,
     });
   },

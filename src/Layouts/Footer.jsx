@@ -3,7 +3,7 @@
 const Footer = () => {
   return (
     <footer
-      className=" bg-white dark:bg-slate-800"
+      className=" bg-white dark:bg-slate-800 mt-auto relative w-screen"
       // style={{ position: 'fixed', left: 0, bottom: 0, width: '100%' }}
     >
       <div className="mt-auto mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
