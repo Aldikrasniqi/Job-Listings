@@ -6,11 +6,12 @@ const withLayouts = (Component, data = 'public') => {
     return (
       <>
         {data === 'auth' ? <h1>AuthLogin</h1> : <Header />}
+
         <Component {...props} />
+
         <Footer />
       </>
     );
   };
 };
-
 export default withLayouts;

@@ -28,6 +28,7 @@ function LoginForm({ onSuccess }) {
     const response = await apiCall(ENDPOINTS.login, { data });
     console.log(response);
     if (response.confirmed) {
+      setErrorMessages([]);
       onSuccess(response.results);
     } else {
       setErrorMessages(['Something Went wrong!']);
@@ -37,8 +38,8 @@ function LoginForm({ onSuccess }) {
   return (
     <>
       <ErrorAlert messages={errorMessages} />
-      <section className="bg-gray-50 dark:bg-gray-900">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <section className=" dark:bg-gray-900 ">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-4/6 lg:py-0 m-24">
           <Link
             to="/"
             className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
@@ -121,7 +122,7 @@ function LoginForm({ onSuccess }) {
                 </div>
                 <button
                   type="submit"
-                  className="w-full text-gray-900 bg-white hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  className="w-full text-white bg-slate-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Sign in
                 </button>

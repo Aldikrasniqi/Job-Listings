@@ -1,6 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import Footer from './Layouts/Footer';
-import Header from './Layouts/Header';
 import AppRoutes from './Routes/Routes';
 import { store } from './Store/Store';
 import { Provider } from 'react-redux';
