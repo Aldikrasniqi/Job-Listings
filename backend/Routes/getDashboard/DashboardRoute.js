@@ -1,7 +1,7 @@
 const express = require('express');
+const cheerio = require('cheerio');
+const axios = require('axios');
 const router = express.Router();
-const User = require('../../models/user.model');
-// const { createUser, getUserByEmail } = require('../../services/user.service');
 
 const {
   getFavorites,
@@ -10,40 +10,21 @@ const {
   delFavorites,
 } = require('../../controllers/FavoriteController.js');
 
-// router.post('/login', (req, res) => {
-
-// });
-// router.get('/register', (req, res) => {
-//   res.send('create an account!');
-// });
-// router.post('/register', async (req, res) => {
-//   const {
-//     firstName,
-//     lastName,
-//     email,
-//     password,
-//     favorites,
-//     role,
-//     profileImage,
-//   } = req.body;
-
-//   const newUser = new User({
-//     firstName,
-//     lastName,
-//     email,
-//     password,
-//     favorites,
-//     role,
-//     profileImage,
-//   });
-
-//   try {
-//     await createUser(newUser);
-//     res.status(200).json({ message: 'User registered successfully' });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Failed to register user' });
-//   }
+// router.get('/dashboard', (req, res) => {
+//   axios
+//     .get('https://jobs.telegrafi.com/')
+//     .then((response) => {
+//       const $ = cheerio.load(response.data);
+//       const jobElements = $('.container');
+//       const titles = jobElements
+//         .map((index, element) => $(element).find('a').text())
+//         .get();
+//       res.json({ titles });
+//     })
+//     .catch((error) => {
+//       console.error('Error:', error);
+//       res.status(500).json({ error: 'An error occurred' });
+//     });
 // });
 
 router.route('/favorites').get(getFavorites).post(postFavorites);

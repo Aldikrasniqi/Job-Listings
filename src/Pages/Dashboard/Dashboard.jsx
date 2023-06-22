@@ -1,33 +1,42 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import withLayouts from '../../HOC/withLayouts';
-
-import React, { useState } from 'react';
 
 function Dashboard() {
   const jobs = ['Programmer', 'Designer', 'Developer', 'Engineer', 'Manager'];
   const [job, setJob] = useState(jobs[0]);
   const [searchResults, setSearchResults] = useState([]);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [titles, setTitles] = useState([]);
 
+  useEffect(() => {
+    const apiEndpoint = 'http://localhost:4001/jobs/job-titles';
+    axios
+      .get(apiEndpoint)
+      .then((response) => {
+        console.log(response.data);
+        const { company } = response.data;
+        const titleArray = Object.values(company);
+        setTitles(titleArray);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, []);
+
+  // onChange handler for the search input
   const handleSearch = (e) => {
     const keyword = e.target.value;
     setJob(keyword);
 
     if (keyword.trim() === '') {
-      setSearchResults([]);
-      setShowDropdown(false);
+      setSearchResults([]); // Clear the search results if the input is empty
     } else {
+      // Filter the jobs array based on the keyword
       const filteredResults = jobs.filter((job) =>
         job.toLowerCase().includes(keyword.toLowerCase())
       );
       setSearchResults(filteredResults);
-      setShowDropdown(true);
     }
-  };
-
-  const handleSelectResult = (result) => {
-    setJob(result);
-    setSearchResults([]);
-    setShowDropdown(false);
   };
 
   return (
@@ -66,7 +75,6 @@ function Dashboard() {
               id="default-search"
               className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Search Jobs, title, or keyword..."
-              value={job}
               onChange={handleSearch}
               required
             />
@@ -77,14 +85,14 @@ function Dashboard() {
               Search
             </button>
           </div>
-          {showDropdown && (
+          {searchResults.length > 0 && (
             <div className="mt-4">
               <ul className="bg-white border border-gray-300 rounded-lg shadow-md">
                 {searchResults.map((result, index) => (
                   <li
                     key={index}
                     className="py-2 px-4 hover:bg-gray-100 cursor-pointer"
-                    onClick={() => handleSelectResult(result)}
+                    onClick={() => setJob(result)}
                   >
                     {result}
                   </li>
@@ -92,9 +100,17 @@ function Dashboard() {
               </ul>
             </div>
           )}
+
+          <div>
+            <h2 className="mb-12 mt-12 font-sans text-2xl sm:text-4xl subpixel-antialiased font-semibold  text-slate-800 tracking-wide">
+              Job Company Titles:
+            </h2>
+            <p>{titles.join('')}</p>
+          </div>
         </form>
       </div>
     </div>
   );
 }
+
 export default withLayouts(Dashboard);

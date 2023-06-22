@@ -32,10 +32,10 @@ export const publicRoutes = [
     path: '/about',
     element: <About />,
   },
-  // {
-  //   path: '/docs',
-  //   element: <Docs />,
-  // },
+  {
+    path: '/docs',
+    element: <Docs />,
+  },
 ];
 
 export const privateRoutes = [
