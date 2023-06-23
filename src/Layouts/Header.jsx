@@ -91,6 +91,10 @@ const Header = () => {
                       <p className="px-4 py-2 text-sm text-gray-700">
                         Logged in as {user.firstName}
                       </p>
+                      <span className="px-4 py-2 text-sm text-gray-700 font-bold">
+                        {user.email}
+                      </span>
+                      <hr className="my-1 border-gray-300" />
 
                       <button
                         onClick={handleLogout}

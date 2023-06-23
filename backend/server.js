@@ -4,7 +4,8 @@ const dotenv = require('dotenv').config();
 const dbConnection = require('./Lib/dbConfig');
 const dashboardRoute = require('./Routes/getDashboard/DashboardRoute');
 const authRoute = require('./Routes/Auth/auth.routes');
-const JobRoute = require('./Routes/jobs.route');
+const JobRoute = require('./Routes/telegrafi.jobs.route');
+const KosovaJobRoute = require('./Routes/kosova.jobs.route');
 const app = express();
 const responder = require('./Lib/baseResponses.js');
 const port = process.env.PORT || 8000;
@@ -18,6 +19,7 @@ dbConnection.connect();
 app.use('/dashboard/', dashboardRoute);
 app.use('/auth/', authRoute);
 app.use('/jobs/', JobRoute);
+app.use('/jobs/', KosovaJobRoute);
 // error handler
 app.use((error, req, res, next) => {
   console.log('here');
