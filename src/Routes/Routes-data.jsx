@@ -7,6 +7,7 @@ import ResetPassword from '../Pages/Reset-password/ResetPassword';
 import Dashboard from '../Pages/Dashboard/Dashboard';
 import About from '../Pages/About/About';
 import Docs from '../Pages/Documentation/Docs';
+import NotFound from '../Pages/NotFound/NotFound';
 export const publicRoutes = [
   {
     path: '/login',
@@ -35,6 +36,10 @@ export const publicRoutes = [
   {
     path: '/docs',
     element: <Docs />,
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ];
 

@@ -31,7 +31,6 @@ function AppRoutes() {
         {exposedRoutes.map((elem, index) => {
           return <Route key={index} element={elem.element} path={elem.path} />;
         })}
-        <Route element={<h1>404 Not Found</h1>} path="*" />
       </Routes>
     </Router>
   );
