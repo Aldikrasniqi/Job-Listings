@@ -1,14 +1,36 @@
-const getFavorites = (req, res) => {
-  res.status(200).json({ message: 'get favorite ' });
+const responder = require('../Lib/baseResponses');
+
+const getFavorites = async (req, res) => {
+  try {
+    res.json(responder.success(`Favorites for user ${req.params.id}`));
+    console.log('here');
+  } catch (error) {
+    res.json(responder.fail(error));
+  }
 };
+
 const postFavorites = (req, res) => {
-  res.status(200).json({ message: 'Favorites set' });
+  try {
+    res.json(responder.success(`Favorites for user ${req.params.id}`));
+    console.log('here');
+  } catch (error) {
+    res.json(responder.fail(error));
+  }
 };
+
 const putFavorites = (req, res) => {
-  res.status(200).json({ message: `Favorites updating ${req.params.id}` });
+  try {
+    res.json(responder.success(`Updated user favorite ${req.params.id}`));
+  } catch (error) {
+    res.json(responder.fail(error));
+  }
 };
 const delFavorites = (req, res) => {
-  res.status(200).json({ message: `deleting favorites ${req.params.id}` });
+  try {
+    res.json(responder.success(`Deleted user favorite ${req.params.id}`));
+  } catch (error) {
+    res.json(responder.fail(error));
+  }
 };
 module.exports = {
   getFavorites,

@@ -3,10 +3,6 @@ const router = express.Router();
 const responder = require('../Lib/baseResponses');
 const authorizationMiddleware = require('../middleware/authorization.middleware');
 
-// router.get('/', (req, res) => {
-//   res.render('favorites');
-// });
-
 router.post(
   '/add-to-favorites',
   authorizationMiddleware.checkUserAuth,

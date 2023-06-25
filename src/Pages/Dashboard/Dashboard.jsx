@@ -56,7 +56,21 @@ function Dashboard() {
     setJob(result);
     setSearchResults([]);
   };
+  const handleAddToFavorites = async () => {
+    try {
+      const id = 2; // Replace 'yourItemId' with the actual item ID you want to add to favorites
+      const apiEndpoint = `http://localhost:4001/dashboard/favorites/${id}`;
 
+      // Make a POST request to the backend API endpoint
+      const response = await axios.post(apiEndpoint, { data: 'example' });
+
+      // Handle the response or perform any necessary actions
+      console.log(response.data);
+    } catch (error) {
+      // Handle any errors
+      console.error(error);
+    }
+  };
   return (
     <>
       {auth ? (
@@ -168,19 +182,14 @@ function Dashboard() {
                         <p className="mb-3 text-gray-100 dark:text-gray-400">
                           {jobExpires.length > 0 && jobExpires[0]}
                         </p>
-                        {/* Learn more link */}
-                        <Link
-                          to="/"
+
+                        <button
                           className="inline-flex items-center font-medium text-blue-600 hover:text-gray-200 dark:text-blue-500 dark:hover:text-blue-700 mb-2"
+                          onClick={handleAddToFavorites}
                         >
-                          Add to your favorites
-                          <svg
-                            className="w-6 h-6 ml-1"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          ></svg>
-                        </Link>
+                          Add to favorites
+                        </button>
+
                         <Rating>
                           <Rating.Star />
                           <Rating.Star />
@@ -205,19 +214,14 @@ function Dashboard() {
                         <p className="mb-3 text-gray-100 dark:text-gray-400">
                           {jobExpires.length > 0 && jobExpires[1]}
                         </p>
-                        {/* Learn more link */}
-                        <Link
-                          to="/"
+
+                        <button
                           className="inline-flex items-center font-medium text-blue-600 hover:text-gray-200 dark:text-blue-500 dark:hover:text-blue-700 mb-2"
+                          onChange={handleAddToFavorites}
                         >
-                          Add to your favorites
-                          <svg
-                            className="w-6 h-6 ml-1"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          ></svg>
-                        </Link>
+                          Add to favorites
+                        </button>
+
                         <Rating>
                           <Rating.Star />
                           <Rating.Star />
@@ -244,19 +248,12 @@ function Dashboard() {
                         <p className="mb-3 text-gray-200 dark:text-gray-400">
                           {jobExpires.length > 0 && jobExpires[2]}
                         </p>
-                        {/* Learn more link */}
-                        <Link
-                          to="/"
-                          className="inline-flex items-center font-medium text-blue-600 hover:text-gray-200 dark:text-blue-200 dark:hover:text-blue-700 mb-2"
+                        <button
+                          className="inline-flex items-center font-medium text-blue-600 hover:text-gray-200 dark:text-blue-500 dark:hover:text-blue-700 mb-2"
+                          onChange={handleAddToFavorites}
                         >
-                          Add to your favorites
-                          <svg
-                            className="w-6 h-6 ml-1"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          ></svg>
-                        </Link>
+                          Add to favorites
+                        </button>
                         <Rating>
                           <Rating.Star />
                           <Rating.Star />
@@ -283,18 +280,12 @@ function Dashboard() {
                         <p className="mb-3 text-gray-200 dark:text-gray-400">
                           {jobExpires.length > 0 && jobExpires[3]}
                         </p>
-                        <Link
-                          to="/"
+                        <button
                           className="inline-flex items-center font-medium text-blue-600 hover:text-gray-200 dark:text-blue-500 dark:hover:text-blue-700 mb-2"
+                          onChange={handleAddToFavorites}
                         >
-                          Add to your favorites
-                          <svg
-                            className="w-6 h-6 ml-1"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          ></svg>
-                        </Link>
+                          Add to favorites
+                        </button>
                         <Rating>
                           <Rating.Star />
                           <Rating.Star />
@@ -321,19 +312,13 @@ function Dashboard() {
                         <p className="mb-3 text-gray-200 dark:text-gray-400">
                           {jobExpires.length > 0 && jobExpires[5]}
                         </p>
-                        {/* Learn more link */}
-                        <Link
-                          to="/"
+                        <button
                           className="inline-flex items-center font-medium text-blue-600 hover:text-gray-200 dark:text-blue-500 dark:hover:text-blue-700 mb-2"
+                          onChange={handleAddToFavorites}
                         >
-                          Add to your favorites
-                          <svg
-                            className="w-6 h-6 ml-1"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          ></svg>
-                        </Link>
+                          Add to favorites
+                        </button>
+
                         <Rating>
                           <Rating.Star />
                           <Rating.Star />
@@ -360,19 +345,12 @@ function Dashboard() {
                         <p className="mb-3 text-gray-200 dark:text-gray-400">
                           {jobExpires.length > 0 && jobExpires[4]}
                         </p>
-                        {/* Learn more link */}
-                        <Link
-                          to="/"
+                        <button
                           className="inline-flex items-center font-medium text-blue-600 hover:text-gray-200 dark:text-blue-500 dark:hover:text-blue-700 mb-2"
+                          onChange={handleAddToFavorites}
                         >
-                          Add to your favorites
-                          <svg
-                            className="w-6 h-6 ml-1"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          ></svg>
-                        </Link>
+                          Add to favorites
+                        </button>
                         <Rating>
                           <Rating.Star />
                           <Rating.Star />
