@@ -25,9 +25,9 @@ router.get('/kosova-jobs', async (req, res) => {
       .map((jobListExpires) => $(jobListExpires).text());
 
     res.send({
-      linkTexts: linkTexts.slice(15, 25),
-      cityTexts: cityTexts.slice(15, 25),
-      jobListExpiresTexts: jobListExpiresTexts.slice(15, 25),
+      linkTexts: linkTexts.slice(0, 15),
+      cityTexts: cityTexts.slice(0, 15),
+      jobListExpiresTexts: jobListExpiresTexts.slice(0, 15),
     });
   } catch (error) {
     console.error('Error:', error);

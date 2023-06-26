@@ -5,7 +5,19 @@ const User = require('../models/user.model');
 const Job = require('../models/jobs.model');
 const getFavorites = async (req, res) => {
   try {
-    res.json(responder.success(`Favorites for user ${req.params.id}`));
+    // show all favorites
+    const favorite = await Job.find();
+
+    res.json(
+      responder.success(
+        favorite.map((favorite) => ({
+          id: favorite._id,
+          companies: favorite.companies,
+          city: favorite.city,
+          jobListExpires: favorite.jobListExpires,
+        }))
+      )
+    );
     console.log('here');
   } catch (error) {
     res.json(responder.fail(error));
@@ -34,17 +46,19 @@ const postFavorites = async (req, res) => {
     const jobListExpiresTexts = jobListExpires
       .get()
       .map((jobListExpires) => $(jobListExpires).text());
+
     console.log(linkTexts[jobId]);
     console.log(cityTexts[jobId]);
     console.log(jobListExpiresTexts[jobId]);
-    // const job = new Job({
-    //   companies: linkTexts[jobId],
-    //   city: cityTexts[jobId],
-    //   jobListExpires: jobListExpiresTexts[jobId],
-    // });
-    // // Find the user who is adding the favorite
-    // const userId = req.user._id;
-    // const user = await User.findById(userId);
+
+    const job = new Job({
+      companies: linkTexts[jobId],
+      city: cityTexts[jobId],
+      jobListExpires: jobListExpiresTexts[jobId],
+    });
+    job.save();
+
+    // find the user that is adding the job by firstName
 
     // // Add the job to the user's favorites
     // User.favorites.push(job);
