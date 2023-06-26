@@ -10,13 +10,13 @@ function Dashboard() {
   const auth = useSelector((state) => state.auth.value);
   const jobs = ['Programmer', 'Designer', 'Developer', 'Engineer', 'Manager'];
   const [currentPage, setCurrentPage] = useState(1);
-  const onPageChange = (page) => setCurrentPage(page);
   const [job, setJob] = useState(jobs[0]);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Loading state
   const [kosovaJobs, setKosovaJobs] = useState([]); // Data state
   const [city, setCity] = useState([]);
   const [jobExpires, setJobExpires] = useState([]);
+  const [favorites, setFavorites] = useState([]); // Favorites state
 
   useEffect(() => {
     const apiEndpoint = 'http://localhost:4001/jobs/kosova-jobs';
@@ -56,21 +56,35 @@ function Dashboard() {
     setJob(result);
     setSearchResults([]);
   };
-  const handleAddToFavorites = async () => {
+  const handleAddToFavorites = async (id) => {
     try {
-      const id = 2; // Replace 'yourItemId' with the actual item ID you want to add to favorites
       const apiEndpoint = `http://localhost:4001/dashboard/favorites/${id}`;
 
       // Make a POST request to the backend API endpoint
-      const response = await axios.post(apiEndpoint, { data: 'example' });
+      const response = await axios.post(
+        apiEndpoint,
+        {
+          data: 'added to favorites',
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+          },
+        }
+      );
 
-      // Handle the response or perform any necessary actions
-      console.log(response.data);
+      // Extract the added favorite from the response
+      const { favorite } = response.data;
+      console.log(favorite);
+
+      // Update your favorites list without rendering the entire page
+      setFavorites((prevFavorites) => [...prevFavorites, favorite]); // Append the new favorite to the existing list
     } catch (error) {
       // Handle any errors
       console.error(error);
     }
   };
+
   return (
     <>
       {auth ? (
@@ -79,7 +93,7 @@ function Dashboard() {
             <h1 className="mb-12 font-sans text-2xl sm:text-5xl subpixel-antialiased font-extrabold ml-4 md:ml-20 text-slate-800 tracking-wide">
               Find Your Dream Job Here
             </h1>
-            {console.log(JSON.stringify(auth))}
+            {console.log(auth.token)}
             <div className="flex justify-center">
               <form className="w-5/6">
                 <label
@@ -185,7 +199,7 @@ function Dashboard() {
 
                         <button
                           className="inline-flex items-center font-medium text-blue-600 hover:text-gray-200 dark:text-blue-500 dark:hover:text-blue-700 mb-2"
-                          onClick={handleAddToFavorites}
+                          onClick={() => handleAddToFavorites(0)}
                         >
                           Add to favorites
                         </button>
@@ -217,7 +231,7 @@ function Dashboard() {
 
                         <button
                           className="inline-flex items-center font-medium text-blue-600 hover:text-gray-200 dark:text-blue-500 dark:hover:text-blue-700 mb-2"
-                          onChange={handleAddToFavorites}
+                          onClick={() => handleAddToFavorites(1)}
                         >
                           Add to favorites
                         </button>
@@ -250,7 +264,7 @@ function Dashboard() {
                         </p>
                         <button
                           className="inline-flex items-center font-medium text-blue-600 hover:text-gray-200 dark:text-blue-500 dark:hover:text-blue-700 mb-2"
-                          onChange={handleAddToFavorites}
+                          onClick={() => handleAddToFavorites(2)}
                         >
                           Add to favorites
                         </button>
@@ -282,7 +296,7 @@ function Dashboard() {
                         </p>
                         <button
                           className="inline-flex items-center font-medium text-blue-600 hover:text-gray-200 dark:text-blue-500 dark:hover:text-blue-700 mb-2"
-                          onChange={handleAddToFavorites}
+                          onClick={() => handleAddToFavorites(3)}
                         >
                           Add to favorites
                         </button>
@@ -304,17 +318,17 @@ function Dashboard() {
                       >
                         {/* Data display */}
                         <h2 className="mb-3 text-3xl font-extrabold tracking-tight text-white dark:text-white">
-                          {kosovaJobs.length > 0 && kosovaJobs[5]}
+                          {kosovaJobs.length > 0 && kosovaJobs[4]}
                         </h2>
                         <p className="mb-3 text-gray-200 dark:text-gray-400">
-                          {city.length > 0 && city[5]}
+                          {city.length > 0 && city[4]}
                         </p>
                         <p className="mb-3 text-gray-200 dark:text-gray-400">
-                          {jobExpires.length > 0 && jobExpires[5]}
+                          {jobExpires.length > 0 && jobExpires[4]}
                         </p>
                         <button
                           className="inline-flex items-center font-medium text-blue-600 hover:text-gray-200 dark:text-blue-500 dark:hover:text-blue-700 mb-2"
-                          onChange={handleAddToFavorites}
+                          onClick={() => handleAddToFavorites(4)}
                         >
                           Add to favorites
                         </button>
@@ -337,17 +351,17 @@ function Dashboard() {
                       >
                         {/* Data display */}
                         <h2 className="mb-3 text-3xl font-extrabold tracking-tight text-white dark:text-white">
-                          {kosovaJobs.length > 0 && kosovaJobs[4]}
+                          {kosovaJobs.length > 0 && kosovaJobs[5]}
                         </h2>
                         <p className="mb-3 text-gray-200 dark:text-gray-400">
-                          {city.length > 0 && city[4]}
+                          {city.length > 0 && city[5]}
                         </p>
                         <p className="mb-3 text-gray-200 dark:text-gray-400">
-                          {jobExpires.length > 0 && jobExpires[4]}
+                          {jobExpires.length > 0 && jobExpires[5]}
                         </p>
                         <button
                           className="inline-flex items-center font-medium text-blue-600 hover:text-gray-200 dark:text-blue-500 dark:hover:text-blue-700 mb-2"
-                          onChange={handleAddToFavorites}
+                          onClick={() => handleAddToFavorites(5)}
                         >
                           Add to favorites
                         </button>

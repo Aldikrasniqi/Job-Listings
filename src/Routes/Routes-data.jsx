@@ -8,6 +8,7 @@ import Dashboard from '../Pages/Dashboard/Dashboard';
 import About from '../Pages/About/About';
 import Docs from '../Pages/Documentation/Docs';
 import NotFound from '../Pages/NotFound/NotFound';
+import Favorites from '../Pages/Favorites/Favorites';
 export const publicRoutes = [
   {
     path: '/login',
@@ -47,6 +48,10 @@ export const privateRoutes = [
   {
     path: '/dashboard',
     element: <Dashboard />,
+  },
+  {
+    path: '/Favorites',
+    element: <Favorites />,
   },
 ];
 

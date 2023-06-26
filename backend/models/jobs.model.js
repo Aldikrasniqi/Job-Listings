@@ -2,8 +2,15 @@ const mongoose = require('mongoose');
 
 const jobSchema = mongoose.Schema(
   {
-    apiJokeId: { type: String, required: true },
-    value: { type: String, required: true },
+    companies: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    jobListExpires: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

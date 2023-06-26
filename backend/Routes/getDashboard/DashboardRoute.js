@@ -17,7 +17,7 @@ router
 
 router
   .route('/favorites/:id')
-  .post(postFavorites)
+  .post(authorizationMiddleware.checkUserAuth, postFavorites)
   .get(authorizationMiddleware.checkUserAuth, getFavorites)
   .put(authorizationMiddleware.checkUserAuth, putFavorites)
   .delete(authorizationMiddleware.checkUserAuth, delFavorites);
