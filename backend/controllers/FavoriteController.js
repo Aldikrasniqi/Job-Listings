@@ -56,14 +56,12 @@ const postFavorites = async (req, res) => {
       city: cityTexts[jobId],
       jobListExpires: jobListExpiresTexts[jobId],
     });
-    job.save();
 
-    // find the user that is adding the job by firstName
+    // get the token from frontend decode it and get the user id
+    const token = req.headers.authorization.split(' ')[1];
+    console.log(token);
 
-    // // Add the job to the user's favorites
-    // User.favorites.push(job);
-    // await user.save();
-    // await job.save();
+    await job.save();
     res.json(responder.success(`Added user favorite ${req.params.id}`));
   } catch (error) {
     res.json(responder.fail(error));

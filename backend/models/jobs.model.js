@@ -11,6 +11,7 @@ const jobSchema = mongoose.Schema(
     jobListExpires: {
       type: String,
     },
+    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   },
   { timestamps: true }
 );

@@ -64,7 +64,7 @@ function Dashboard() {
       const response = await axios.post(
         apiEndpoint,
         {
-          data: auth.firstName,
+          data: 'added to favorites',
         },
         {
           headers: {

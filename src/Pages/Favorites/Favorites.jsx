@@ -47,6 +47,7 @@ function Favorites({ userId }) {
               <p>Job ID: {job.id}</p>
               <p>Company: {job.companies}</p>
               <p>Job Expires: {job.jobListExpires}</p>
+              <p>User: {job.User}</p>
               <br />
               <br />
               {/* Add more properties as needed */}
