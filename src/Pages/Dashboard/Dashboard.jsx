@@ -57,6 +57,8 @@ function Dashboard() {
     setSearchResults([]);
   };
   const handleAddToFavorites = async (id) => {
+    // stop rendering the page after clicking the button
+
     try {
       const apiEndpoint = `http://localhost:4001/dashboard/favorites/${id}`;
 
@@ -68,7 +70,7 @@ function Dashboard() {
         },
         {
           headers: {
-            Authorization: `Bearer ${auth.token}`,
+            authorization: `Bearer ${auth.token}`,
           },
         }
       );

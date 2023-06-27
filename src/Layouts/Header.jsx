@@ -88,14 +88,14 @@ const Header = () => {
                   </button>
                   {isMenuOpen && (
                     <div className="absolute right-0 mt-2 w-auto bg-white rounded-md shadow-lg py-2">
-                      <p className="px-4 py-2 text-sm text-gray-700">
-                        Logged in as {user.firstName}
-                      </p>
                       <span className="px-4 py-2 text-sm text-gray-700 font-bold">
                         {user.email}
                       </span>
-                      <hr className="my-1 border-gray-300" />
 
+                      <hr className="my-1 border-gray-300" />
+                      <span className="block px-4 py-2 text-sm text-gray-700 font-bold hover:bg-gray-100 w-full text-left">
+                        <Link to="/favorites">Favorites</Link>
+                      </span>
                       <button
                         onClick={handleLogout}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
